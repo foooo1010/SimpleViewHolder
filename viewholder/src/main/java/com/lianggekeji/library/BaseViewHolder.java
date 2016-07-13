@@ -11,11 +11,6 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
         ButterKnife.bind(this,v);
     }
 
-    /**
-     * 绑定ViewHolder
-     *
-     * @return
-     */
     public abstract void onBindViewHolder(View view, T obj);
 
 }

@@ -11,21 +11,21 @@ import java.util.List;
 /**
  * Created by Yi on 16/5/16.
  */
-public class SimpleBaseAdapter<T, K, L> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SimpleBaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private int count = 10;
-    private List<T> itemData = new ArrayList<>();
+    private List itemData = new ArrayList<>();
     private Class<? extends BaseViewHolder> itemViewHolder;
     private int itemType;
 
-    private K headData;
+    private Object headData;
     private Class<? extends BaseViewHolder> headViewHolder;
     private int headType;
 
-    private L loadMoreData;
+    private Object loadMoreData;
     private Class<? extends BaseViewHolder> moreViewHolder = DefaultFooterVH.class;
     private int moreType = R.layout.default_load_more;
-    private boolean canMore = false;//是否支持上拉加载更多
-    private boolean hasMore = true;//是否还有更多数据
+    private boolean canMore = false;
+    private boolean hasMore = true;
 
     public void addItemView(Class<? extends BaseViewHolder> itemViewHolder) {
         this.itemViewHolder = itemViewHolder;
@@ -37,19 +37,17 @@ public class SimpleBaseAdapter<T, K, L> extends RecyclerView.Adapter<RecyclerVie
         this.headType = getHolderType(headViewHolder);
     }
 
-    //可以自定义尾部,有默认值
     public void addLoadMoreItemView(Class<? extends BaseViewHolder> loadMoreViewHolder) {
         this.moreViewHolder = loadMoreViewHolder;
         this.moreType = getHolderType(moreViewHolder);
     }
 
-    public void setItemData(List<T> itemData) {
+    public void setItemData(List itemData) {
         this.itemData = itemData;
-        canMore = itemData.size() > count;//重新设置数据后自动设置canMore
+        canMore = itemData.size() > count;
         notifyDataSetChanged();
     }
 
-    //得到layoutId(layoutId作为Type)
     public int getHolderType(Class<? extends BaseViewHolder> holder) {
         try {
             return holder.getConstructor(View.class).getAnnotation(Layout.class).value();
@@ -63,12 +61,12 @@ public class SimpleBaseAdapter<T, K, L> extends RecyclerView.Adapter<RecyclerVie
         return canMore;
     }
 
-    public void setHeadData(K headData) {
+    public void setHeadData(Object headData) {
         this.headData = headData;
         notifyDataSetChanged();
     }
 
-    public void setLoadMoreData(L data) {
+    public void setLoadMoreData(Object data) {
         this.loadMoreData = data;
         notifyDataSetChanged();
     }

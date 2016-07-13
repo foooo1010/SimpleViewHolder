@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by Yi on 16/5/18.
  */
-public class SimpleRecycleView<T,K,L> extends FrameLayout {
+public class SimpleRecycleView extends FrameLayout {
     RecyclerView recycleView;
     SwipeRefreshLayout refreshLayout;
     OnScrollListener scrollListener;
@@ -92,28 +92,23 @@ public class SimpleRecycleView<T,K,L> extends FrameLayout {
     }
 
     private LoadListener loadListener;
-    //刷新和下拉的监听
     public void setLoadListener(LoadListener loadListener) {
         this.loadListener = loadListener;
     }
-    //设置item数据
-    public void setItemData(List<T> data) {
+    public void setItemData(List data) {
         adapter.setItemData(data);
     }
-    //设置头部数据
-    public void setHeadData(K data) {
+    public void setHeadData(Object data) {
         adapter.setHeadData(data);
     }
 
-    public void setLoadMoreData(L data) {
+    public void setLoadMoreData(Object data) {
         setHasMore(true);
         adapter.setLoadMoreData(data);
     }
-    //是否可以上拉加载更多
     public void setCanLoadMore(boolean is) {
         adapter.setCanMore(is);
     }
-    //是否有跟过数据,默认效果设置有用
     public void setHasMore(boolean hasMore) {
         adapter.setHasMore(hasMore);
     }
