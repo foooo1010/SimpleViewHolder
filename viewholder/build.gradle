@@ -12,7 +12,7 @@ ext {
     siteUrl = 'https://github.com/yhj2009/SimpleViewHolder'
     gitUrl = 'https://github.com/yhj2009/SimpleViewHolder.git'
 
-    libraryVersion = '2.0.0'
+    libraryVersion = '2.0.1'
 
     developerId = 'yhj'
     developerName = 'yhj'

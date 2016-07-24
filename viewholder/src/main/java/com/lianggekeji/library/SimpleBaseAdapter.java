@@ -25,7 +25,7 @@ public class SimpleBaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private Class<? extends BaseViewHolder> moreViewHolder = DefaultFooterVH.class;
     private int moreType = R.layout.default_load_more;
     private boolean canMore = false;
-    private boolean hasMore = true;
+    private boolean haveMoreDate = true;
 
     public void addItemView(Class<? extends BaseViewHolder> itemViewHolder) {
         this.itemViewHolder = itemViewHolder;
@@ -70,14 +70,14 @@ public class SimpleBaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.loadMoreData = data;
         notifyDataSetChanged();
     }
-
+    //是否支持上拉加载更多
     public void setCanMore(boolean canMore) {
         this.canMore = canMore;
         notifyDataSetChanged();
     }
-
-    public void setHasMore(boolean hasMore) {
-        this.hasMore = hasMore;
+    //是否已经没有数据
+    public void setHaveMoreDate(boolean haveMoreDate) {
+        this.haveMoreDate = haveMoreDate;
         notifyDataSetChanged();
     }
 
@@ -119,7 +119,7 @@ public class SimpleBaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         Object obj;
         if (tempType == itemType) obj = itemData.get(position - (headType == 0 ? 0 : 1));
         else if (tempType == headType) obj = headData;
-        else obj = hasMore ? (loadMoreData == null ? new Object() : loadMoreData) : null;
+        else obj = haveMoreDate ? (loadMoreData == null ? new Object() : loadMoreData) : null;
         ((BaseViewHolder) holder).onBindViewHolder(
                 holder.itemView, obj
         );

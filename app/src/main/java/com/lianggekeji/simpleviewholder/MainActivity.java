@@ -22,17 +22,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onLoadMore() {
                 Toast.makeText(getApplicationContext(), "load more...", Toast.LENGTH_LONG).show();
+                recycleView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recycleView.completeLoading();
+                        recycleView.setHaveMore(false);
+                    }
+                }, 2000);
             }
 
             @Override
             public void onRefresh() {
                 Toast.makeText(getApplicationContext(), "refresh....", Toast.LENGTH_LONG).show();
+                recycleView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recycleView.completeLoading();
+                    }
+                }, 2000);
             }
         });
         recycleView.addHeadView(HeadVH.class);
         recycleView.addItemView(UserItemVH.class);
-        recycleView.setItemData(Arrays.asList(new User(),new User(),new User(),new User()
-                ,new User(),new User(),new User(),new User(),new User()
-                ,new User(),new User(),new User(),new User(),new User()));
+        recycleView.setItemData(Arrays.asList(new User(), new User(), new User(), new User()
+                , new User(), new User(), new User(), new User(), new User()
+                , new User(), new User(), new User(), new User(), new User()));
     }
 }

@@ -17,6 +17,7 @@ public abstract class OnScrollListener extends RecyclerView.OnScrollListener {
                 &&!isLoading
                 && lastVisibleItem + 1 == recyclerView.getAdapter()
                 .getItemCount() && ((SimpleBaseAdapter)recyclerView.getAdapter()).isCanMore()) {
+            ((SimpleBaseAdapter) recyclerView.getAdapter()).setHaveMoreDate(true);//正在加载状态。
             loadMore();
             isLoading = true;
         }

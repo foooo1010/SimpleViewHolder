@@ -103,13 +103,15 @@ public class SimpleRecycleView extends FrameLayout {
     }
 
     public void setLoadMoreData(Object data) {
-        setHasMore(true);
+        setHaveMore(true);
         adapter.setLoadMoreData(data);
     }
+    //是否支持上拉加载更多
     public void setCanLoadMore(boolean is) {
         adapter.setCanMore(is);
     }
-    public void setHasMore(boolean hasMore) {
-        adapter.setHasMore(hasMore);
+    //是否已经没有数据
+    public void setHaveMore(boolean hasMore) {
+        adapter.setHaveMoreDate(hasMore);
     }
 }
